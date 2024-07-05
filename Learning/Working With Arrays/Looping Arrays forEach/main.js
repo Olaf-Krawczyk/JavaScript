@@ -12,4 +12,3 @@ movements.forEach(function (movement, index, value) {
   //   movement > 0 ? console.log(`You deposited ${movement}`) : console.log(`You withdrew ${Math.abs(movement)}`);
   console.log(index);
 });
-s;
