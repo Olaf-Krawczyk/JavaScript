@@ -13,15 +13,19 @@ console.log(secretNumber);
 let userScore = 20;
 let hG = 0;
 
+function displayMessage(mes) {
+  message.textContent = mes;
+}
+
 btnCheck.addEventListener('click', function () {
   const value = Number(guess.value);
   console.log(userScore);
   if (userScore == 0) {
-    message.textContent = 'You cant play, press Again!';
+    displayMessage('You cant play, press Again!');
   } else {
     if (!value) {
       console.log('Error');
-      message.textContent = 'No number entered';
+      displayMessage('No number entered');
     } else if (value === secretNumber) {
       if (userScore > hG) {
         highscore.textContent = userScore;
@@ -29,17 +33,17 @@ btnCheck.addEventListener('click', function () {
         hG += userScore;
         highscore.textContent = hG;
       }
-      message.textContent = 'You won!!';
+      displayMessage('You won!!');
       body.style.backgroundColor = 'green';
       number.textContent = secretNumber;
       number.style.width = '30rem';
       hG = userScore;
     } else if (value < secretNumber) {
-      message.textContent = 'Secret number is higher';
+      displayMessage('Secret number is higher');
       userScore--;
       score.textContent = userScore;
     } else if (value > secretNumber) {
-      message.textContent = 'Secret number is lower';
+      displayMessage('Secret number is lower');
       userScore--;
       score.textContent = userScore;
     }
