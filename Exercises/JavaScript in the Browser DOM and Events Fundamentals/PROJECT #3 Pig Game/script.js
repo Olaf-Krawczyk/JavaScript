@@ -29,22 +29,16 @@ btnRoll.addEventListener('click', function () {
       playerScore += random;
       currentScore0.textContent = playerScore;
     } else {
-      activePlayer = 1;
-      playerScore = 0;
+      remove();
       currentScore0.textContent = playerScore;
-      player0.classList.remove('player--active');
-      player1.classList.add('player--active');
     }
   } else if (activePlayer === 1)
     if (random !== 1) {
       playerScore += random;
       currentScore1.textContent = playerScore;
     } else {
-      activePlayer = 0;
-      playerScore = 0;
+      add();
       currentScore1.textContent = playerScore;
-      player1.classList.remove('player--active');
-      player0.classList.add('player--active');
     }
 });
 
@@ -52,18 +46,43 @@ btnHold.addEventListener('click', function () {
   if (activePlayer === 0) {
     scores[activePlayer] += playerScore;
     scoreOvr0.textContent = scores[activePlayer];
-    player0.classList.remove('player--active');
-    player1.classList.add('player--active');
-    activePlayer = 1;
-    playerScore = 0;
+    remove();
     currentScore0.textContent = 0;
   } else if (activePlayer === 1) {
     scores[activePlayer] += playerScore;
     scoreOvr1.textContent = scores[activePlayer];
-    player1.classList.remove('player--active');
-    player0.classList.add('player--active');
-    playerScore = 0;
+    add();
     currentScore1.textContent = 0;
-    activePlayer = 0;
   }
 });
+
+btnNew.addEventListener('click', function () {
+  reset();
+});
+
+function reset() {
+  playerScore = 0;
+  activePlayer = 0;
+  scores[0] = 0;
+  scores[1] = 0;
+  player1.classList.remove('player--active');
+  player0.classList.add('player--active');
+  scoreOvr0.textContent = 0;
+  scoreOvr1.textContent = 0;
+  currentScore0.textContent = 0;
+  currentScore1.textContent = 0;
+}
+
+function remove() {
+  activePlayer = 1;
+  playerScore = 0;
+  player0.classList.remove('player--active');
+  player1.classList.add('player--active');
+}
+
+function add() {
+  activePlayer = 0;
+  playerScore = 0;
+  player1.classList.remove('player--active');
+  player0.classList.add('player--active');
+}
