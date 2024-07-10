@@ -19,3 +19,5 @@ console.log(events);
 gameEvents.delete(64);
 
 console.log(90 / gameEvents.size);
+
+console.log(...gameEvents.keys());
