@@ -20,4 +20,6 @@ gameEvents.delete(64);
 
 console.log(90 / gameEvents.size);
 
-console.log(...gameEvents.keys());
+for (let [first, second] of gameEvents) {
+  console.log(`${second} in ${first} min`);
+}
