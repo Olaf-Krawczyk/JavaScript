@@ -12,4 +12,10 @@ const gameEvents = new Map([
   [92, "� Yellow card"],
 ]);
 
-console.log(gameEvents);
+const events = new Set(gameEvents.values());
+
+console.log(events);
+
+gameEvents.delete(64);
+
+console.log(90 / gameEvents.size);
