@@ -11,9 +11,11 @@ function toCamelCase(text) {
       const start = i.slice(0, floor - 1);
       const end = i.slice(floor);
       full = start + end[0].toUpperCase() + end.slice(1);
-      return console.log(full);
+      textArea.value = full;
     }
   }
 }
 
-toCamelCase("calculate_AGE");
+btn.addEventListener("click", function () {
+  toCamelCase(textArea.value);
+});
