@@ -16,6 +16,11 @@ const poll = {
   },
 };
 
-poll.registerNewAnswer();
-
 console.log(poll);
+
+const body = document.querySelector("body");
+const btn = document.createElement("button");
+btn.textContent = "Answer poll";
+body.appendChild(btn);
+
+btn.addEventListener("click", poll.registerNewAnswer.bind(poll));
