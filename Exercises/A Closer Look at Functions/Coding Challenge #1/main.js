@@ -13,6 +13,15 @@ const poll = {
     } else if (userOption == 3) {
       this.answers[3] += 1;
     }
+    this.displayResults();
+    this.displayResults(`string`);
+  },
+  displayResults(type = "array") {
+    if (type === "array") {
+      console.log(this.answers);
+    } else if (type === "string") {
+      console.log(`resaults are ${this.answers.join(", ")}`);
+    }
   },
 };
 
