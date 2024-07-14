@@ -63,32 +63,29 @@ const inputClosePin = document.querySelector('.form__input--pin');
 
 function displayMovements(movements) {
   containerMovements.innerHTML = '';
-  movements.forEach(function (mov, i) {
-    const type = mov > 0 ? `deposit` : `withdrawal`;
-
-    const html = `
-            <div class="movements__row">
-          <div class="movements__type movements__type--${type}">${
-      i + 1
-    } ${type} deposit</div>
-          <div class="movements__value">${mov}€</div>
-        </div>
-    `;
-    containerMovements.insertAdjacentHTML(`afterbegin`, html);
+  movements.forEach((movement, index) => {
+    const type = movement < 0 ? `withdrawal` : `deposit`;
+    const html = `        
+        <div class="movements__row">
+          <div class="movements__type movements__type--${type}">${index} ${type}</div>
+          <div class="movements__value">${movement}€</div>
+        </div>`;
+    containerMovements.insertAdjacentHTML('afterbegin', html);
   });
 }
 
 displayMovements(account1.movements);
 
-const makeUserName = function (accs) {
-  accs.forEach(function (acc) {
+function makeUserName(accs) {
+  accs.forEach(acc => {
     acc.username = acc.owner
       .toLowerCase()
       .split(' ')
-      .map(name => name[0])
+      .map(x => x.at(0))
       .join('');
   });
-};
+
+  console.log(accs);
+}
 
 makeUserName(accounts);
-console.log(accounts);
