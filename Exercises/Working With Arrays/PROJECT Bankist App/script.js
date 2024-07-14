@@ -86,6 +86,27 @@ function calcBalance(movements) {
 
 calcBalance(account1.movements);
 
+function calcDisplaySummary(movements) {
+  const incomes = movements
+    .filter(mov => mov > 0)
+    .reduce((accum, mov) => (accum += mov), 0);
+  labelSumIn.textContent = `${incomes}€`;
+
+  const outcomes = movements
+    .filter(mov => mov < 0)
+    .reduce((accu, mov) => (accu += mov), 0);
+  labelSumOut.textContent = `${Math.abs(outcomes)}€`;
+
+  const intrest = movements
+    .filter(mov => mov > 0)
+    .map(mov => (mov * 1.2) / 100)
+    .reduce((accu, mov) => (accu += mov));
+
+  labelSumInterest.textContent = `${intrest}€`;
+}
+
+calcDisplaySummary(account1.movements);
+
 function makeUserName(accs) {
   accs.forEach(acc => {
     acc.username = acc.owner
@@ -94,8 +115,6 @@ function makeUserName(accs) {
       .map(x => x.at(0))
       .join('');
   });
-
-  console.log(accs);
 }
 
 makeUserName(accounts);
