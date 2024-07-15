@@ -165,3 +165,15 @@ btnClose.addEventListener('click', function (x) {
     containerApp.style.opacity = 0;
   }
 });
+
+btnLoan.addEventListener('click', function (e) {
+  e.preventDefault();
+  const amount = Number(inputLoanAmount.value);
+
+  if (amount > 0 && currentAccount.movements.some(x => x >= amount * 0.1)) {
+    currentAccount.movements.push(amount);
+    displayMovements(currentAccount.movements);
+    calcDisplaySummary(currentAccount.movements);
+    labelBalance.textContent = `${currentAccount.balance}€`;
+  }
+});
