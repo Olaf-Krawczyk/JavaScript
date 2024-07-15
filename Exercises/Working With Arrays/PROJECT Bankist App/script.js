@@ -151,3 +151,17 @@ btnTransfer.addEventListener('click', function (e) {
     }
   }
 });
+
+btnClose.addEventListener('click', function (x) {
+  x.preventDefault();
+  if (
+    inputCloseUsername.value === currentAccount.username &&
+    inputClosePin.value == currentAccount.pin
+  ) {
+    const index = accounts.findIndex(
+      x => x.username === currentAccount.username
+    );
+    accounts.splice(index, 1);
+    containerApp.style.opacity = 0;
+  }
+});
