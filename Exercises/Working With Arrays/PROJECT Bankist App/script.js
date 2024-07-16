@@ -62,6 +62,7 @@ const inputCloseUsername = document.querySelector('.form__input--user');
 const inputClosePin = document.querySelector('.form__input--pin');
 
 let currentAccount;
+let wasClicked = false;
 
 btnLogin.addEventListener('click', function (a) {
   a.preventDefault();
@@ -176,4 +177,27 @@ btnLoan.addEventListener('click', function (e) {
     calcDisplaySummary(currentAccount.movements);
     labelBalance.textContent = `${currentAccount.balance}€`;
   }
+});
+
+btnSort.addEventListener('click', function () {
+  if (!wasClicked) {
+    currentAccount.movements.sort((a, b) => {
+      if (a > b) {
+        return 1;
+      } else if (b > a) {
+        return -1;
+      }
+    });
+    wasClicked = true;
+  } else {
+    currentAccount.movements.sort((a, b) => {
+      if (a > b) {
+        return -1;
+      } else if (b > a) {
+        return 1;
+      }
+    });
+    wasClicked = false;
+  }
+  displayMovements(currentAccount.movements);
 });
