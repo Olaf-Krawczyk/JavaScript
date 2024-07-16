@@ -9,4 +9,4 @@ const recFood = dogs.forEach((element) => {
   element.recFood = Math.trunc(element.weight ** 0.75 * 28);
 });
 
-const index = dogs.flatMap((x) => x.owners).findIndex((x) => x === "Sarah");
+const dogSarah = dogs.find((dog) => dog.owners.includes("Sarah"));
