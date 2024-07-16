@@ -10,3 +10,5 @@ const recFood = dogs.forEach((element) => {
 });
 
 const dogSarah = dogs.find((dog) => dog.owners.includes("Sarah"));
+
+console.log(`Sarahs dog is eating ${dogSarah.curFood > dogSarah.recFood ? `to much` : "good"} `);
