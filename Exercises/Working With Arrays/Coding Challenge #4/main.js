@@ -6,9 +6,7 @@ const dogs = [
 ];
 
 const recFood = dogs.forEach((element) => {
-  console.log(Math.trunc(element.weight ** 0.75 * 28 * 1000));
+  element.recFood = Math.trunc(element.weight ** 0.75 * 28);
 });
 
 const index = dogs.flatMap((x) => x.owners).findIndex((x) => x === "Sarah");
-
-console.log(sarahDog);
