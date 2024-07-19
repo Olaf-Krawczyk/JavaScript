@@ -73,7 +73,7 @@ const inputLoanAmount = document.querySelector('.form__input--loan-amount');
 const inputCloseUsername = document.querySelector('.form__input--user');
 const inputClosePin = document.querySelector('.form__input--pin');
 
-let currentAccount;
+let currentAccount, timer;
 
 function makeUserName(accs) {
   accs.forEach(acc => {
@@ -87,6 +87,25 @@ function makeUserName(accs) {
 
 makeUserName(accounts);
 
+function loginTimer() {
+  let timer = 10;
+
+  const tick = () => {
+    const min = String(Math.trunc(timer / 60)).padStart(2, 0);
+    const sec = String(Math.trunc(timer % 60)).padStart(2, 0);
+    labelTimer.textContent = `${min}:${sec}`;
+    timer--;
+    if (timer === 0) {
+      clearInterval(startCounting);
+      containerApp.style.opacity = 0;
+    }
+  };
+
+  tick();
+  const startCounting = setInterval(tick, 1000);
+  return startCounting;
+}
+
 btnLogin.addEventListener('click', function (e) {
   e.preventDefault();
   const login = accounts.find(x => x.username === inputLoginUsername.value);
@@ -97,6 +116,8 @@ btnLogin.addEventListener('click', function (e) {
     calcBalance(currentAccount);
     labelBalance.textContent = `${currentAccount.balance.toFixed(2)}€`;
     displayIntrestEtc(currentAccount.movements);
+    if (timer) clearInterval(timer);
+    timer = loginTimer();
   }
 });
 
