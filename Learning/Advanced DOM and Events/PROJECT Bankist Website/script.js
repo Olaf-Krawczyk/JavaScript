@@ -8,6 +8,7 @@ const overlay = document.querySelector('.overlay');
 const btnCloseModal = document.querySelector('.btn--close-modal');
 const btnsOpenModal = document.querySelectorAll('.btn--show-modal');
 const header = document.querySelector('.header');
+const navLink = document.querySelectorAll('.nav__link');
 
 btnsOpenModal.forEach(element => {
   element.addEventListener('click', function (e) {
@@ -57,3 +58,21 @@ btnScrollTo.addEventListener('click', function (e) {
 // h1.addEventListener('mouseenter', function () {
 //   console.log('WORK?');
 // });
+
+// navLink.forEach(element => {
+//   element.addEventListener('click', function (e) {
+//     e.preventDefault();
+//     const id = this.getAttribute('href');
+//     document.querySelector(id).scrollIntoView({ behavior: `smooth` });
+//   });
+// });
+
+document.querySelector('.nav__links').addEventListener('click', function (e) {
+  e.preventDefault();
+  try {
+    const id = e.target.getAttribute('href');
+    document.querySelector(id).scrollIntoView({ behavior: `smooth` });
+  } catch (error) {
+    console.log('NO PROBLEM');
+  }
+});
