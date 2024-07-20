@@ -7,6 +7,7 @@ const modal = document.querySelector('.modal');
 const overlay = document.querySelector('.overlay');
 const btnCloseModal = document.querySelector('.btn--close-modal');
 const btnsOpenModal = document.querySelectorAll('.btn--show-modal');
+const header = document.querySelector('.header');
 
 btnsOpenModal.forEach(element => {
   element.addEventListener('click', function (e) {
@@ -19,4 +20,15 @@ btnsOpenModal.forEach(element => {
 btnCloseModal.addEventListener('click', function () {
   modal.classList.add('hidden');
   overlay.classList.add('hidden');
+});
+
+const message = document.createElement('div');
+message.classList.add('cookie-message');
+message.innerHTML = `loremloremloremloremloremloremloremloremloremloremloremloremloremloremloremloremloremloremloremlorem <button class="btn btn-close-cookie"> Click here</button>`;
+header.appendChild(message);
+
+const btnCloseCookie = document.querySelector('.btn-close-cookie');
+
+btnCloseCookie.addEventListener('click', function () {
+  message.remove();
 });
