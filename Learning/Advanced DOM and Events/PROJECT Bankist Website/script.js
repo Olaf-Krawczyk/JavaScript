@@ -25,6 +25,9 @@ btnCloseModal.addEventListener('click', function () {
 const message = document.createElement('div');
 message.classList.add('cookie-message');
 message.innerHTML = `loremloremloremloremloremloremloremloremloremloremloremloremloremloremloremloremloremloremloremlorem <button class="btn btn-close-cookie"> Click here</button>`;
+message.style.backgroundColor = `#37383d`;
+message.style.width = `120%`;
+message.style.height = `80px`;
 header.appendChild(message);
 
 const btnCloseCookie = document.querySelector('.btn-close-cookie');
@@ -32,3 +35,5 @@ const btnCloseCookie = document.querySelector('.btn-close-cookie');
 btnCloseCookie.addEventListener('click', function () {
   message.remove();
 });
+
+// document.documentElement.style.setProperty('--color-primary', 'orangered');
