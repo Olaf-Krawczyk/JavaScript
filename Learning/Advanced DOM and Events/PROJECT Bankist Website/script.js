@@ -174,3 +174,25 @@ const headerObserver = new IntersectionObserver(stickyNav, {
 });
 
 headerObserver.observe(header); //uzywanie obserwatora na header
+
+const allSections = document.querySelectorAll('.section'); //wszystkie sekcje
+
+function reavealSection(entries, observer) {
+  const [entry] = entries; //wyciaganie poszczegolnego entry
+
+  if (entry.isIntersecting) {
+    //jesli entry jest w zasiegu
+    entry.target.classList.remove('section--hidden'); //sciagamy classlist
+    observer.unobserve(entry.target); //przestajemy obserwowac nasz target po wykonaniu sie
+  }
+}
+
+const sectionObserver = new IntersectionObserver(reavealSection, {
+  root: null,
+  threshold: 0.15, // 15% widocznosci skecji
+});
+
+allSections.forEach(element => {
+  // tworzymy petle zeby obserwowac wszystkie sekcje
+  sectionObserver.observe(element);
+});
