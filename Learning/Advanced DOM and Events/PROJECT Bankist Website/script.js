@@ -197,27 +197,135 @@ allSections.forEach(element => {
   sectionObserver.observe(element);
 });
 
-const imgTargets = document.querySelectorAll('img[data-src');
+const imgTargets = document.querySelectorAll('img[data-src'); // zaznacznie tylko img z data-src
 
 function loadimg(entries, observer) {
-  const [entry] = entries;
+  //funkcja ladowania zdjec
+  const [entry] = entries; // wejscie ktora jest akurat uzywane
 
-  if (!entry.isIntersecting) return;
+  if (!entry.isIntersecting) return; //jesli wejscie jest false to nie zwroci bledu
 
-  entry.target.src = entry.target.dataset.src;
+  entry.target.src = entry.target.dataset.src; // src ma sie zmienic na dataset src
 
   entry.target.addEventListener('load', function () {
-    entry.target.classList.remove('lazy-img');
+    //kiedy zdjecie sie zaladuje
+    entry.target.classList.remove('lazy-img'); // to sciagnie blura na zdjeciu
   });
 
-  observer.unobserve(entry.target);
+  observer.unobserve(entry.target); //przestaje obserowoawc zdjecie po wykonaniu czynnosci
 }
 
 const imgObserver = new IntersectionObserver(loadimg, {
+  //robienie obserwatora
   root: null,
   threshold: 0,
 });
 
 imgTargets.forEach(element => {
-  imgObserver.observe(element);
+  imgObserver.observe(element); //obserwowanie wszystkich zdjec
+});
+
+const slides = document.querySelectorAll('.slide'); //wszystkie rzeczy z klasa slide
+
+const btnLeft = document.querySelector('.slider__btn--left');
+const btnRight = document.querySelector('.slider__btn--right');
+
+let curSlide = 0; //slide ktory jest teraz uzywany
+
+const maxSlide = slides.length - 1; //gdzie najdalej mozemy przesunac
+
+slides.forEach((element, index) => {
+  //robenie tak zeby zdjecia nie byly na sobie
+  element.style.transform = `translateX(${100 * index}%)`;
+});
+
+btnRight.addEventListener('click', function () {
+  if (curSlide === maxSlide) {
+    //jesli slide uzywany jest rowny max slide
+    curSlide = 0; //to ma wrocic na poczatek
+  } else {
+    curSlide++; // ma dodac 1 czyli przesunac go
+  }
+
+  slides.forEach((element, index) => {
+    element.style.transform = `translateX(${100 * (index - curSlide)}%)`; //przesuwanie sliedow
+  });
+});
+
+btnLeft.addEventListener('click', function () {
+  if (curSlide === 0) {
+    curSlide = 3;
+  } else {
+    curSlide--;
+  }
+
+  slides.forEach((element, index) => {
+    element.style.transform = `translateX(${100 * (index - curSlide)}%)`; //przesuwanie slidow do tylu
+  });
+});
+
+document.addEventListener('keydown', function (e) {
+  // przesuwanie strzalka
+  if (e.key === 'ArrowLeft') {
+    if (curSlide === 0) {
+      curSlide = 3;
+    } else {
+      curSlide--;
+    }
+
+    slides.forEach((element, index) => {
+      element.style.transform = `translateX(${100 * (index - curSlide)}%)`; //przesuwanie slidow do tylu
+    });
+  }
+});
+
+document.addEventListener('keydown', function (e) {
+  if (e.key === 'ArrowRight') {
+    if (curSlide === maxSlide) {
+      //jesli slide uzywany jest rowny max slide
+      curSlide = 0; //to ma wrocic na poczatek
+    } else {
+      curSlide++; // ma dodac 1 czyli przesunac go
+    }
+
+    slides.forEach((element, index) => {
+      element.style.transform = `translateX(${100 * (index - curSlide)}%)`; //przesuwanie sliedow
+    });
+  }
+});
+
+const dots = document.querySelector('.dots'); //zaznaczamy diva dots
+createDots();
+
+function createDots() {
+  //tutaj tworzymy dots
+  slides.forEach((element, index) => {
+    const html = `<button class="dots__dot" data-slide="${index}"></button>`; // tworzymy dost z data slide tak zeby kazde bylo inne
+
+    dots.insertAdjacentHTML('beforeend', html); // dodajemy na koncu
+  });
+}
+
+function activeDot(slide) {
+  document.querySelectorAll(`.dots__dot`).forEach(element => {
+    //zazanczamy wszystkie dots
+    element.classList.remove(`dots__dot--active`); //sciagamy im klase active
+  });
+
+  document
+    .querySelector(`.dots__dot[data-slide="${slide}"]`) //teraz na slide wykona sie nadanie klasy active
+    .classList.add(`dots__dot--active`);
+}
+
+dots.addEventListener('click', function (e) {
+  if (e.target.classList.contains('dots__dot')) {
+    //jesli nasz target zawiera klase dots dot
+    const { slide } = e.target.dataset; //wyciagamy slide na ktorym jestesmy
+    curSlide = slide; // cur slide ma sie rowna slide na ktory kliknelismy
+
+    slides.forEach((element, index) => {
+      element.style.transform = `translateX(${100 * (index - curSlide)}%)`; //przesuwanie sliedow
+    });
+    activeDot(slide);
+  }
 });
