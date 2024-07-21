@@ -130,13 +130,47 @@ nav.addEventListener('mouseout', function (e) {
   handleHover(e, 1);
 });
 
-const coords = section1.getBoundingClientRect();
-console.log(coords);
+// const coords = section1.getBoundingClientRect();
+// console.log(coords);
 
-window.addEventListener('scroll', function (e) {
-  if (window.scrollY > coords.top) {
-    nav.classList.add('sticky');
+// window.addEventListener('scroll', function (e) {
+//   if (window.scrollY > coords.top) {
+//     nav.classList.add('sticky');
+//   } else {
+//     nav.classList.remove('sticky');
+//   }
+// });
+
+// function obsCallBack(entries, observer) {
+//   entries.forEach(element => {
+//     console.log(element);
+//   });
+// }
+
+// const obsOptions = {
+//   root: null,
+//   threshold: [0, 1],
+// };
+
+// const observer = new IntersectionObserver(obsCallBack, obsOptions);
+// observer.observe(section1);
+
+function stickyNav(entries) {
+  //kazde wejscie
+  const [entry] = entries; //wydzialemy nasze entry
+  if (!entry.isIntersecting) {
+    //gdy entry nie jest w zasiegu headera
+    nav.classList.add('sticky'); //nadaje klase sticky
   } else {
-    nav.classList.remove('sticky');
+    nav.classList.remove('sticky'); // a gdy jest w zasiegu headera to ją zabiera
   }
+}
+
+const headerObserver = new IntersectionObserver(stickyNav, {
+  //tworzenie nowego obserwatora
+  root: null, //obserwowanie na calej stronie
+  threshold: 0, //punkt w ktorym konczu sie nasza sekcja
+  rootMargin: `-90px`, // margin headera
 });
+
+headerObserver.observe(header); //uzywanie obserwatora na header
