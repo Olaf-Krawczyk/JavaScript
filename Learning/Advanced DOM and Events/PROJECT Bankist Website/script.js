@@ -178,7 +178,7 @@ headerObserver.observe(header); //uzywanie obserwatora na header
 const allSections = document.querySelectorAll('.section'); //wszystkie sekcje
 
 function reavealSection(entries, observer) {
-  const [entry] = entries; //wyciaganie poszczegolnego entry
+  const [entry] = entries; //element ktory jest intersecting czyli jest obserwowany
 
   if (entry.isIntersecting) {
     //jesli entry jest w zasiegu
@@ -195,4 +195,29 @@ const sectionObserver = new IntersectionObserver(reavealSection, {
 allSections.forEach(element => {
   // tworzymy petle zeby obserwowac wszystkie sekcje
   sectionObserver.observe(element);
+});
+
+const imgTargets = document.querySelectorAll('img[data-src');
+
+function loadimg(entries, observer) {
+  const [entry] = entries;
+
+  if (!entry.isIntersecting) return;
+
+  entry.target.src = entry.target.dataset.src;
+
+  entry.target.addEventListener('load', function () {
+    entry.target.classList.remove('lazy-img');
+  });
+
+  observer.unobserve(entry.target);
+}
+
+const imgObserver = new IntersectionObserver(loadimg, {
+  root: null,
+  threshold: 0,
+});
+
+imgTargets.forEach(element => {
+  imgObserver.observe(element);
 });
