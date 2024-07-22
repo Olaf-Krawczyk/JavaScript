@@ -54,5 +54,3 @@ const addTax2 = function () {
 };
 
 console.log(addTax2()(100));
-
-s;
