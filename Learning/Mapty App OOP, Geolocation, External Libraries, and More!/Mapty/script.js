@@ -65,20 +65,20 @@ class Cycling extends Workout {
 }
 
 class App {
-  #map;
-  #mapEvent;
-  #workouts = [];
-  #mapzoomlevel = 13;
+  #map; // tworzmy mape ktora bedzie tylko dostepna w klasie app
+  #mapEvent; // tworzymy mapevent z ktorego wyciagniemy pozniej coords
+  #workouts = []; // tworzymy tabele ze wszystkimi workoutami
+  #mapzoomlevel = 13; // map zoom na 13
 
   constructor() {
-    this._getPosition();
+    this._getPosition(); // uzywamy funckji ktora daje nasza pozycje
 
-    this._getLocalStorage();
+    this._getLocalStorage(); // uzywamy funkcji ktora pobiera nasz local storage
 
-    form.addEventListener('submit', this._newWorkout.bind(this));
+    form.addEventListener('submit', this._newWorkout.bind(this)); // dodajemy do forma event listener, i uzywamy bind zeby this w srodku dziala
 
-    inputType.addEventListener('change', this._toggleElevationsField);
-    containerWorkouts.addEventListener(`click`, this._moveToPopup.bind(this));
+    inputType.addEventListener('change', this._toggleElevationsField); // robimy to samo co wyzej
+    containerWorkouts.addEventListener(`click`, this._moveToPopup.bind(this)); // tutaj tez
   }
 
   _getPosition() {
