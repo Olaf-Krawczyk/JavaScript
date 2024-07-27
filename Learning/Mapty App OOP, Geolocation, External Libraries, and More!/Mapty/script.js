@@ -23,6 +23,7 @@ class Workout {
 }
 
 class Running extends Workout {
+  type = 'running';
   constructor(coords, distance, duration, cadence) {
     super(coords, distance, duration);
     this.cadence = cadence;
@@ -36,6 +37,7 @@ class Running extends Workout {
 }
 
 class Cycling extends Workout {
+  type = 'cycling';
   constructor(coords, distance, duration, elevationGain) {
     super(coords, distance, duration);
     this.elevationGain = elevationGain;
@@ -55,6 +57,7 @@ console.log(run1, cyc1);
 class App {
   #map;
   #mapEvent;
+  #workouts = [];
 
   constructor() {
     this._getPosition();
@@ -78,8 +81,6 @@ class App {
   _loadMap(position) {
     const { latitude } = position.coords;
     const { longitude } = position.coords;
-    const link = `https://www.google.pl/maps/@${latitude},${longitude}`;
-    console.log(link);
 
     const coords = [latitude, longitude];
 
@@ -105,15 +106,57 @@ class App {
     inputCadence.closest('.form__row').classList.toggle('form__row--hidden');
   }
   _newWorkout(e) {
+    function validInputs(...inputs) {
+      return inputs.every(inp => Number.isFinite(inp)); //sprawdzanie czy wszystki liczby sa pozytywne a nie np sa literami
+    }
+
+    function allPositive(...inputs) {
+      return inputs.every(inp => inp > 0);
+    }
+
     e.preventDefault();
+
+    const type = inputType.value;
+    const distance = +inputDistance.value;
+    const duration = +inputDuration.value;
+    const { lat, lng } = this.#mapEvent.latlng;
+    let workout;
+
+    if (type === 'running') {
+      const cadence = +inputCadence.value;
+      if (
+        !validInputs(distance, duration, cadence) ||
+        !allPositive(distance, duration, cadence)
+      )
+        return alert('ABVC');
+
+      workout = new Running([lat, lng], distance, duration, cadence);
+    }
+
+    if (type === 'cycling') {
+      const elevation = +inputElevation.value;
+      if (
+        !validInputs(distance, duration, elevation) ||
+        !allPositive(distance, duration)
+      )
+        return alert('ABVC');
+
+      workout = new Cycling([lat, lng], distance, duration, elevation);
+    }
+
+    this.#workouts.push(workout);
+
     inputElevation.value = '';
     inputCadence.value = '';
     inputDuration.value = '';
     inputDistance.value = '';
     inputDistance.focus();
 
-    const { lat, lng } = this.#mapEvent.latlng;
-    L.marker([lat, lng])
+    this.renderWorkoutMaker(workout);
+  }
+
+  renderWorkoutMaker(workout, type) {
+    L.marker(workout.coords)
       .addTo(this.#map)
       .bindPopup(
         L.popup({
@@ -121,10 +164,10 @@ class App {
           minWidth: 120,
           autoClose: false,
           closeOnClick: false,
-          className: 'running-popup',
+          className: `${workout.type}-popup`,
         })
       )
-      .setPopupContent('WORKOUT')
+      .setPopupContent(`workout.distance`)
       .openPopup();
   }
 }
