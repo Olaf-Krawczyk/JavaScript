@@ -112,8 +112,12 @@ class App {
     inputCadence.value = '';
     inputDuration.value = '';
     inputDistance.value = '';
-    form.computedStyleMap.display = 'none';
+    form.style.display = 'none';
     form.classList.add('hidden');
+
+    setTimeout(() => {
+      form.style.display = 'grid';
+    }, 1000);
   }
 
   _toggleElevationsField() {
@@ -179,7 +183,9 @@ class App {
           className: `${workout.type}-popup`,
         })
       )
-      .setPopupContent(`workout.distance`)
+      .setPopupContent(
+        `${workout.type === 'running' ? `🏃‍♂️` : `🚴‍♀️`} ${workout.description}`
+      )
       .openPopup();
   }
 
