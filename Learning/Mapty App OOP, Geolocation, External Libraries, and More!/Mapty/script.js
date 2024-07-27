@@ -25,27 +25,31 @@ class Workout {
     // prettier-ignore
     const months = ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'];
     this.description = `${this.type[0].toUpperCase()}${this.type.slice(1)} on ${
-      months[this.date.getMonth()]
+      //wyciagamy pierwsza litere type i dodajemy do niego resztre slowa
+      months[this.date.getMonth()] // wyciagamy miesiac
     }`;
   }
 }
 
 class Running extends Workout {
-  type = 'running';
+  //tworzymy class dziecko Workouts
+  type = 'running'; // type przypisujemy do running
   constructor(coords, distance, duration, cadence) {
-    super(coords, distance, duration);
-    this.cadence = cadence;
-    this.calcPace();
-    this._setDescription();
+    super(coords, distance, duration); // dodajmy klasy z rodzica
+    this.cadence = cadence; // klasa tylko dla running
+    this.calcPace(); // uzywamy funckji ktora kaluluje pace
+    this._setDescription(); // uzywamy funkcji ktora robi description
   }
 
   calcPace() {
+    // liczenie pace
     this.pace = this.duration / this.distance;
     return this.pace;
   }
 }
 
 class Cycling extends Workout {
+  // twoprzymy to samo running tylko dla cycling
   type = 'cycling';
   constructor(coords, distance, duration, elevationGain) {
     super(coords, distance, duration);
@@ -59,9 +63,6 @@ class Cycling extends Workout {
     return this.speed;
   }
 }
-
-const run1 = new Running([39, -12], 5.2, 24, 178);
-const cyc1 = new Running([39, -12], 27, 95, 523);
 
 class App {
   #map;
