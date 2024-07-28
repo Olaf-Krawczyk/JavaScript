@@ -52,4 +52,6 @@ const countriesContainer = document.querySelector('.countries');
 // getCountryData('portugal');
 // getCountryData('usa');
 
-fetch('https://restcountries.com/v2/name/${country}');
+const request = fetch('https://restcountries.com/v2/name/portugal');
+
+console.log(request);
