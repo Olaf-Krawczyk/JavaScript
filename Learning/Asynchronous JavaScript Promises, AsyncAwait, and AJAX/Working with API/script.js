@@ -59,6 +59,15 @@ function getCountryData(country) {
     })
     .then(data => {
       displayCountries(data[0]);
+      const neighbour = data[0].borders[0];
+      if (!neighbour) return;
+      fetch(`https://restcountries.com/v2/alpha/${neighbour}`)
+        .then(response => {
+          return response.json();
+        })
+        .then(data2 => {
+          displayCountries(data2, 'neighbour');
+        });
     });
 }
 
