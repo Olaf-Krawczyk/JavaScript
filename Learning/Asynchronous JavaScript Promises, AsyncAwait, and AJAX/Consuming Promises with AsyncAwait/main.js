@@ -1,6 +1,10 @@
 async function whereIAm(number) {
-  const response = await fetch(`https://swapi.dev/api/people/${number}`);
-  console.log(await response.json());
+  try {
+    const response = await fetch(`https://swapiss.dev/api/people/${number}`);
+    console.log(await response.json());
+  } catch (error) {
+    console.log(error);
+  }
 }
 
 whereIAm(1);
