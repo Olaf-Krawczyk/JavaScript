@@ -6,6 +6,8 @@ async function searchCountry(country) {
 
 searchCountry("poland");
 
+const body = document.querySelector("body");
+
 async function loadImg(arr) {
   arr.forEach((element) => {
     const img = document.createElement(`img`);
