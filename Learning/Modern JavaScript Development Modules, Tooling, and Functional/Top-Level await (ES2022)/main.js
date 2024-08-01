@@ -9,5 +9,3 @@ async function getLast() {
 }
 
 const testT = await getLast();
-
-console.log(testT);
