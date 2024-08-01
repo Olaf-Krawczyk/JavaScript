@@ -6,5 +6,3 @@ function addToCart(item, qty) {
 }
 
 addToCart(`bread`, 5);
-
-const { addToCart } = require("");
