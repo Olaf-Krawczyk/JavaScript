@@ -9,3 +9,8 @@ export function addToCart(product, quantity) {
 }
 
 export { cart as c };
+
+export default function cartAdd(product, quantity) {
+  cart.push({ product, quantity });
+  console.log(`YOU ADD`);
+}
