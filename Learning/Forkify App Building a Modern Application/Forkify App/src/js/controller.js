@@ -1,15 +1,7 @@
 import * as model from './model.js';
 import recipeView from './views/recipe.js';
-
-const recipeContainer = document.querySelector('.recipe');
-
-const timeout = function (s) {
-  return new Promise(function (_, reject) {
-    setTimeout(function () {
-      reject(new Error(`Request took too long! Timeout after ${s} second`));
-    }, s * 1000);
-  });
-};
+import { getJSON } from './helpers.js';
+import { API_URL } from './config.js';
 
 // https://forkify-api.herokuapp.com/v2
 
@@ -21,6 +13,7 @@ async function controlRecipes() {
     if (!id) return;
     recipeView.renderSpinner();
 
+    await getJSON(`${API_URL}${id}`);
     await model.loadRecipe(id);
 
     recipeView.render(model.state.recipe);
