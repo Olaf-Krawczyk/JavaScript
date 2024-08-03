@@ -600,7 +600,9 @@ async function controlRecipes() {
         await (0, _helpersJs.getJSON)(`${(0, _configJs.API_URL)}${id}`);
         await _modelJs.loadRecipe(id);
         (0, _recipeJsDefault.default).render(_modelJs.state.recipe);
-    } catch (error) {}
+    } catch (error) {
+        (0, _recipeJsDefault.default).renderError(`${error} UPS`);
+    }
 }
 function init() {
     (0, _recipeJsDefault.default).addHandlerRender(controlRecipes);
@@ -689,7 +691,21 @@ class RecipeView {
               <use href="src/img/${(0, _iconsSvgDefault.default)}#icon-loader"></use>
             </svg>
           </div>`;
-        this.#parenElement.innerHTML = "";
+        this.#clear();
+        this.#parenElement.insertAdjacentHTML("afterbegin", markup);
+    }
+    renderError(message) {
+        const markup = `
+    <div class="error">
+            <div>
+              <svg>
+                <use href="src/${(0, _iconsSvgDefault.default)}#icon-alert-triangle"></use>
+              </svg>
+            </div>
+            <p>${message}</p>
+          </div>
+    `;
+        this.#clear();
         this.#parenElement.insertAdjacentHTML("afterbegin", markup);
     }
     addHandlerRender(handler) {
