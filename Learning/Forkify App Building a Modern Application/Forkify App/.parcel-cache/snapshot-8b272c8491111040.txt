@@ -25,7 +25,7 @@
 186C:\Users\xteee\Documents\GitHub\JavaScript\Learning\Forkify App Building a Modern Application\Forkify App\node_modules\@parcel\optimizer-htmlnano\node_modules\css-tree\lib\lexer\Lexer.js133671569092923744 0
 194C:\Users\xteee\Documents\GitHub\JavaScript\Learning\Forkify App Building a Modern Application\Forkify App\node_modules\node-gyp-build-optional-packages\node_modules\detect-libc\lib\filesystem.js133671569086486354 0
 155C:\Users\xteee\Documents\GitHub\JavaScript\Learning\Forkify App Building a Modern Application\Forkify App\node_modules\@swc\helpers\esm\_to_property_key.js133671569094816600 0
-110C:\Users\xteee\Documents\GitHub\JavaScript\Learning\Forkify App Building a Modern Application\Forkify App\dist133671814817497448 1
+110C:\Users\xteee\Documents\GitHub\JavaScript\Learning\Forkify App Building a Modern Application\Forkify App\dist133671857239299760 1
 150C:\Users\xteee\Documents\GitHub\JavaScript\Learning\Forkify App Building a Modern Application\Forkify App\node_modules\caniuse-lite\data\regions\FM.js133671569096462185 0
 147C:\Users\xteee\Documents\GitHub\JavaScript\Learning\Forkify App Building a Modern Application\Forkify App\node_modules\mdn-data\css\properties.json133671569089831472 0
 175C:\Users\xteee\Documents\GitHub\JavaScript\Learning\Forkify App Building a Modern Application\Forkify App\node_modules\@parcel\core\test\fixtures\invalid-target-source-missing133671569095241278 1
@@ -151,7 +151,7 @@
 142C:\Users\xteee\Documents\GitHub\JavaScript\Learning\Forkify App Building a Modern Application\Forkify App\node_modules\semver\functions\neq.js133671569090593204 0
 125C:\Users\xteee\Documents\GitHub\JavaScript\Learning\Forkify App Building a Modern Application\Forkify App\node_modules\braces133671569088103255 1
 165C:\Users\xteee\Documents\GitHub\JavaScript\Learning\Forkify App Building a Modern Application\Forkify App\node_modules\@parcel\core\lib\requests\ValidationRequest.js133671569094941920 0
-128C:\Users\xteee\Documents\GitHub\JavaScript\Learning\Forkify App Building a Modern Application\Forkify App\src\js\views\recipe.js133671812507715533 0
+128C:\Users\xteee\Documents\GitHub\JavaScript\Learning\Forkify App Building a Modern Application\Forkify App\src\js\views\recipe.js133671856489500194 0
 146C:\Users\xteee\Documents\GitHub\JavaScript\Learning\Forkify App Building a Modern Application\Forkify App\node_modules\svgo\plugins\removeTitle.js133671569093140867 0
 138C:\Users\xteee\Documents\GitHub\JavaScript\Learning\Forkify App Building a Modern Application\Forkify App\node_modules\dotenv\package.json133671569085561490 0
 180C:\Users\xteee\Documents\GitHub\JavaScript\Learning\Forkify App Building a Modern Application\Forkify App\node_modules\csso\node_modules\css-tree\lib\definition-syntax\tokenizer.js133671569095650206 0
@@ -191,7 +191,7 @@
 145C:\Users\xteee\Documents\GitHub\JavaScript\Learning\Forkify App Building a Modern Application\Forkify App\node_modules\js-yaml\lib\type\binary.js133671569086061572 0
 147C:\Users\xteee\Documents\GitHub\JavaScript\Learning\Forkify App Building a Modern Application\Forkify App\node_modules\cosmiconfig\dist\util.js.map133671569091301487 0
 125C:\Users\xteee\Documents\GitHub\JavaScript\Learning\Forkify App Building a Modern Application\Forkify App\node_modules\@babel133671569073805630 1
-126C:\Users\xteee\Documents\GitHub\JavaScript\Learning\Forkify App Building a Modern Application\Forkify App\src\js\controller.js133671813021913434 0
+126C:\Users\xteee\Documents\GitHub\JavaScript\Learning\Forkify App Building a Modern Application\Forkify App\src\js\controller.js133671857239097802 0
 151C:\Users\xteee\Documents\GitHub\JavaScript\Learning\Forkify App Building a Modern Application\Forkify App\node_modules\nth-check\lib\esm\index.d.ts.map133671569089017667 0
 162C:\Users\xteee\Documents\GitHub\JavaScript\Learning\Forkify App Building a Modern Application\Forkify App\node_modules\type-fest\source\union-to-intersection.d.ts133671569091162407 0
 150C:\Users\xteee\Documents\GitHub\JavaScript\Learning\Forkify App Building a Modern Application\Forkify App\node_modules\caniuse-lite\data\regions\PG.js133671569098293546 0
@@ -2534,7 +2534,7 @@
 139C:\Users\xteee\Documents\GitHub\JavaScript\Learning\Forkify App Building a Modern Application\Forkify App\node_modules\@swc\helpers\_\index133671569096321871 1
 168C:\Users\xteee\Documents\GitHub\JavaScript\Learning\Forkify App Building a Modern Application\Forkify App\node_modules\htmlnano\lib\modules\normalizeAttributeValues.mjs133671569093425924 0
 165C:\Users\xteee\Documents\GitHub\JavaScript\Learning\Forkify App Building a Modern Application\Forkify App\node_modules\htmlnano\lib\modules\removeAttributeQuotes.cjs133671569090055731 0
-128C:\Users\xteee\Documents\GitHub\JavaScript\Learning\Forkify App Building a Modern Application\Forkify App\dist\index.e37f48ea.js133671814817452220 0
+128C:\Users\xteee\Documents\GitHub\JavaScript\Learning\Forkify App Building a Modern Application\Forkify App\dist\index.e37f48ea.js133671857239269728 0
 165C:\Users\xteee\Documents\GitHub\JavaScript\Learning\Forkify App Building a Modern Application\Forkify App\node_modules\htmlnano\lib\modules\removeAttributeQuotes.mjs133671569093445944 0
 158C:\Users\xteee\Documents\GitHub\JavaScript\Learning\Forkify App Building a Modern Application\Forkify App\node_modules\htmlnano\lib\modules\removeComments.mjs133671569093470996 0
 141C:\Users\xteee\Documents\GitHub\JavaScript\Learning\Forkify App Building a Modern Application\Forkify App\node_modules\@parcel\compressor-raw133671569086736462 1
@@ -6033,4 +6033,4 @@
 121C:\Users\xteee\Documents\GitHub\JavaScript\Learning\Forkify App Building a Modern Application\Forkify App\dist\index.html133671811895886677 0
 129C:\Users\xteee\Documents\GitHub\JavaScript\Learning\Forkify App Building a Modern Application\Forkify App\dist\index.f7626f62.css133671811895986762 0
 133C:\Users\xteee\Documents\GitHub\JavaScript\Learning\Forkify App Building a Modern Application\Forkify App\dist\index.f7626f62.css.map133671811896006783 0
-132C:\Users\xteee\Documents\GitHub\JavaScript\Learning\Forkify App Building a Modern Application\Forkify App\dist\index.e37f48ea.js.map133671814817487424 0
+132C:\Users\xteee\Documents\GitHub\JavaScript\Learning\Forkify App Building a Modern Application\Forkify App\dist\index.e37f48ea.js.map133671857239289747 0
