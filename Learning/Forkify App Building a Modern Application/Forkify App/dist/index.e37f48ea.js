@@ -588,10 +588,10 @@ var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
 var _modelJs = require("./model.js");
 var _recipeJs = require("./views/recipe.js");
 var _recipeJsDefault = parcelHelpers.interopDefault(_recipeJs);
+var _searchJs = require("./views/search.js");
+var _searchJsDefault = parcelHelpers.interopDefault(_searchJs);
 var _helpersJs = require("./helpers.js");
 var _configJs = require("./config.js");
-// https://forkify-api.herokuapp.com/v2
-///////////////////////////////////////
 async function controlRecipes() {
     try {
         const id = window.location.hash.slice(1);
@@ -606,17 +606,21 @@ async function controlRecipes() {
 }
 async function controlSearchResults() {
     try {
-        await _modelJs.searchRecipe("pizza");
+        const query = (0, _searchJsDefault.default).getQuery();
+        if (!query) return;
+        await _modelJs.searchRecipe(query);
+        console.log(_modelJs.state);
     } catch (error) {
         console.log(error);
     }
 }
 function init() {
     (0, _recipeJsDefault.default).addHandlerRender(controlRecipes);
+    (0, _searchJsDefault.default).addHandlerSearch(controlSearchResults);
 }
 init();
 
-},{"./model.js":"Y4A21","@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3","./views/recipe.js":"dRlYE","./helpers.js":"hGI1E","./config.js":"k5Hzs"}],"Y4A21":[function(require,module,exports) {
+},{"./model.js":"Y4A21","@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3","./views/recipe.js":"dRlYE","./helpers.js":"hGI1E","./config.js":"k5Hzs","./views/search.js":"kuQE5"}],"Y4A21":[function(require,module,exports) {
 var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
 parcelHelpers.defineInteropFlag(exports);
 parcelHelpers.export(exports, "state", ()=>state);
@@ -1173,6 +1177,28 @@ async function getJSON(url) {
     }
 }
 
-},{"@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3","./config":"k5Hzs"}]},["hycaY","aenu9"], "aenu9", "parcelRequire6d3a")
+},{"@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3","./config":"k5Hzs"}],"kuQE5":[function(require,module,exports) {
+var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
+parcelHelpers.defineInteropFlag(exports);
+class SearchView {
+    #parentEl = document.querySelector(".search");
+    getQuery() {
+        const query = this.#parentEl.querySelector(".search__field").value;
+        this.#clearInput();
+        return query;
+    }
+    #clearInput() {
+        this.#parentEl.querySelector(".search__field").value = "";
+    }
+    addHandlerSearch(handler) {
+        this.#parentEl.addEventListener(`submit`, function(e) {
+            e.preventDefault();
+            handler();
+        });
+    }
+}
+exports.default = new SearchView();
+
+},{"@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3"}]},["hycaY","aenu9"], "aenu9", "parcelRequire6d3a")
 
 //# sourceMappingURL=index.e37f48ea.js.map
