@@ -18,7 +18,15 @@ async function controlRecipes() {
 
     recipeView.render(model.state.recipe);
   } catch (error) {
-    recipeView.renderError(`${error} UPS`);
+    recipeView.renderError();
+  }
+}
+
+async function controlSearchResults() {
+  try {
+    await model.searchRecipe('pizza');
+  } catch (error) {
+    console.log(error);
   }
 }
 

@@ -601,7 +601,14 @@ async function controlRecipes() {
         await _modelJs.loadRecipe(id);
         (0, _recipeJsDefault.default).render(_modelJs.state.recipe);
     } catch (error) {
-        (0, _recipeJsDefault.default).renderError(`${error} UPS`);
+        (0, _recipeJsDefault.default).renderError();
+    }
+}
+async function controlSearchResults() {
+    try {
+        await _modelJs.searchRecipe("pizza");
+    } catch (error) {
+        console.log(error);
     }
 }
 function init() {
@@ -614,9 +621,14 @@ var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
 parcelHelpers.defineInteropFlag(exports);
 parcelHelpers.export(exports, "state", ()=>state);
 parcelHelpers.export(exports, "loadRecipe", ()=>loadRecipe);
+parcelHelpers.export(exports, "searchRecipe", ()=>searchRecipe);
 var _configJs = require("./config.js");
 const state = {
-    recipe: {}
+    recipe: {},
+    search: {
+        query: "",
+        results: []
+    }
 };
 async function loadRecipe(id) {
     try {
@@ -626,6 +638,24 @@ async function loadRecipe(id) {
         const { recipe } = data.data;
         state.recipe = recipe;
     } catch (error) {}
+}
+async function searchRecipe(query) {
+    try {
+        const response = await fetch(`${(0, _configJs.API_URL)}?search=${query}`);
+        const data = await response.json();
+        state.search.query = query;
+        state.search.results = data.data.recipes.map((element)=>{
+            return {
+                id: element.id,
+                img: element.image_url,
+                author: element.publisher,
+                title: element.title
+            };
+        });
+    } catch (error) {
+        console.log(error);
+        throw error;
+    }
 }
 
 },{"@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3","./config.js":"k5Hzs"}],"gkKU3":[function(require,module,exports) {
@@ -675,6 +705,8 @@ var _fractional = require("fractional");
 class RecipeView {
     #parenElement = document.querySelector(".recipe");
     #data;
+    #errorMessage = "We could not find this recipe, try again!";
+    #message = "";
     render(data) {
         this.#data = data;
         const markup = this.#generateMarkup();
@@ -694,12 +726,26 @@ class RecipeView {
         this.#clear();
         this.#parenElement.insertAdjacentHTML("afterbegin", markup);
     }
-    renderError(message) {
+    renderError(error = this.#errorMessage) {
         const markup = `
     <div class="error">
             <div>
               <svg>
-                <use href="src/${(0, _iconsSvgDefault.default)}#icon-alert-triangle"></use>
+                <use href="${(0, _iconsSvgDefault.default)}#icon-alert-triangle"></use>
+              </svg>
+            </div>
+            <p>${error}</p>
+          </div>
+    `;
+        this.#clear();
+        this.#parenElement.insertAdjacentHTML("afterbegin", markup);
+    }
+    renderMessage(message = this.#message) {
+        const markup = `
+    <div class="error">
+            <div>
+              <svg>
+                <use href="${(0, _iconsSvgDefault.default)}#icon-smile"></use>
               </svg>
             </div>
             <p>${message}</p>
